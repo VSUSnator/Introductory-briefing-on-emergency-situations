@@ -194,7 +194,7 @@ function closeModal() {
         <div id="menu" class="menu opacity">
             <ul>
                 <li><a href="registrationForm.html">Главная</a></li>
-                <li><a href="blog.html"class="active">Инструктаж</a></li>
+                <li><a href="blog1.html"class="active">Инструктаж</a></li>
                 <li><a href="fullwidth.html">О нас</a></li>
                 <li><a href="profile.php" >Мой профиль</a></li>
                 <li><a href="index.html">Регистрация</a></li>
@@ -211,10 +211,10 @@ function closeModal() {
         <div class="sidebar-box">
             <h4>Вводный инструктаж.</h4>
             <ul class="latest-posts">
-                <li><a href="blog.html"class="active">Гражданская оборона и ЧС</a></li>
+                <li><a href="blog1.html"class="active">Гражданская оборона и ЧС</a></li>
                 <li><a href="blog2.html">Антитеррористическая защищенность.</a></li>
                 <li><a href="blog3.html">Инструкция о порядке действия сотрудников при пожаре </a></li>
-                <li><a href="blog4.html">Завершение инструктажа и регистрация</a></li>
+                <li><a href="blog.html">Завершение инструктажа и регистрация</a></li>
             </ul>
         </div>
     </div>
@@ -308,7 +308,7 @@ function closeModal() {
                 <script>
                     $(document).ready(function () {
                         const userId = "<?php echo isset($_SESSION['user']) ? $_SESSION['user']['phone_number'] : ''; ?>"; // Уникальный идентификатор пользователя
-                        const materialIndex = 0; // Установите индекс материала
+                        const materialIndex = 4; // Установите индекс материала
                 
                         // Проверяем, был ли пользователь ознакомлен
                         function checkAcknowledgement() {
@@ -343,11 +343,11 @@ function closeModal() {
                 
                         // Обработка нажатия на кнопку для перехода
                         $('#nextButton').on('click', function () {
-                            window.location.href = 'blog2.html'; // Переход на следующую страницу
+                            window.location.href = 'blog6.html'; // Переход на следующую страницу
                         });
                     });
                 </script>
-                
+
                 <script type="text/javascript" src="style/js/scripts.js"></script>
 </body>
 </html>
