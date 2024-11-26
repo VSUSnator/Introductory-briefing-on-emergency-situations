@@ -1,0 +1,200 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация и отслеживание прогресса</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    <link rel="stylesheet" type="text/css" href="style/color/red.css" media="all" />
+
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #menu {
+            text-align: center; /* Центрируем меню */
+            margin-bottom: 20px; /* Отступ снизу */
+        }
+        .menu {
+            display: inline-block; /* Делаем меню в строке */
+            background-color: #6f42c1;
+            border-radius: 0px; /* Закругленные углы */
+        }
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0; /* Убираем отступы */
+        }
+        .menu li {
+            display: inline; /* Располагаем элементы списка в строку */
+        }
+        .menu li a {
+            display: block;
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover {
+            background-color: #575757;
+        }
+        #wrapper {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.intro-instructions h2 {
+    color: #333;
+}
+
+#userInfo {
+    margin-bottom: 20px;
+}
+
+#materialList {
+    margin-top: 20px;
+}
+
+#materialList p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+button {
+    background-color: #5cb85c;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+#message {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#errorMessage {
+    color: red;
+    font-weight: bold;
+}
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Menu -->
+    <div id="menu">
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="blog.html">Инструктаж</a></li>
+                <li><a href="fullwidth.html">О нас</a></li>
+                <li><a href="profile.php">Мой профиль</a></li>
+                <li><a href="registrationForm.html">Регистрация</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="wrapper">
+        <!-- Main Content Section -->
+        <section class="intro-instructions">
+            <h2>Профиль пользователя</h2>
+            <div id="userInfo">
+                <p><strong>ФИО:</strong> <span id="userFullName"></span></p>
+                <p><strong>Телефон:</strong> <span id="userPhoneNumber"></span></p>
+            </div>
+
+            <h3>Материалы для прохождения</h3>
+            <button id="updateMaterialsButton">Обновить статус материалов</button>
+            <div id="materialList">
+                <!-- Статусы материалов будут отображаться здесь -->
+            </div>
+            <div id="instructionText"></div>
+            <div id="errorMessage" style="display:none;"></div>
+            <div id="message" style="display:none;"></div>
+
+            <button id="backButton">Назад к материалам</button>
+        </section>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Функция проверки ознакомления с материалом
+            function checkAcknowledgment() {
+                // Проверяем, прошли ли материалы
+                const material1Passed = localStorage.getItem('material1') === 'true';
+                const material2Passed = localStorage.getItem('material2') === 'true';
+                const material3Passed = localStorage.getItem('material3') === 'true';
+    
+                // Отображение статуса ознакомления
+                if (material1Passed && material2Passed && material3Passed) {
+                    $('#instructionText').text('Вы прошли все материалы!');
+                    $('#errorMessage').hide(); // Скрываем сообщение об ошибке
+                } else {
+                    $('#instructionText').text('Вы не прошли все материалы. Пожалуйста, пройдите все материалы.');
+                    $('#errorMessage').text('Вы не прошли все материалы. Пожалуйста, пройдите все материалы.').show();
+                }
+                // Форма регистрации всегда показывается
+                $('#registrationContainer').show(); 
+            }
+    
+            // Отображение сообщений
+            function showMessage(message, isError = false) {
+                const messageElement = $('#message');
+                messageElement.text(message).css({
+                    'color': isError ? 'red' : 'green',
+                    'font-weight': 'bold',
+                    'background-color': isError ? '#ffe6e6' : '#d4edda',
+                    'padding': '10px',
+                    'border': '1px solid',
+                    'border-color': isError ? 'red' : 'green',
+                    'display': 'block'
+                });
+            }
+    
+            // Проверка на ознакомление
+            checkAcknowledgment();
+    
+            // Обработчик кнопки "Обновить статус материалов"
+            $('#updateMaterialsButton').on('click', function () {
+                // Получаем информацию о прохождении материалов
+                const material1Passed = localStorage.getItem('material1') === 'true';
+                const material2Passed = localStorage.getItem('material2') === 'true';
+                const material3Passed = localStorage.getItem('material3') === 'true';
+    
+                // Обновляем отображение статусов
+                $('#materialList').empty(); // Очищаем предыдущие статусы
+    
+                const materials = [
+                    { title: "Гражданская оборона и ЧС", completed: material1Passed },
+                    { title: "Антитеррористическая защищенность", completed: material2Passed },
+                    { title: "Порядок действия сотрудников при пожаре", completed: material3Passed }
+                ];
+    
+                materials.forEach(material => {
+                    if (material.completed) {
+                        $('#materialList').append(`<p>${material.title} <strong>(Пройдено)</strong></p>`);
+                    } else {
+                        $('#materialList').append(`<p>${material.title} <strong>(Не пройдено)</strong></p>`);
+                    }
+                });
+    
+                showMessage('Статусы материалов обновлены.');
+            });
+        });
+    </script>
+</body>
+</html>

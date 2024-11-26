@@ -1,0 +1,179 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Инструктаж</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            display: flex; /* Используем flexbox для расположения контента */
+            justify-content: space-between; /* Распределяем пространство между элементами */
+        }
+
+        .main-content {
+            flex: 2; /* Основной контент занимает 2 части */
+            padding-right: 20px; /* Отступ справа для отделения от боковой панели */
+        }
+
+        .sidebar {
+            flex: 1; /* Боковая панель занимает 1 часть */
+            padding-left: 20px; /* Отступ слева для отделения от основного контента */
+        }
+
+        #nextButton, #acknowledgeButton, #homeButton {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px; /* Отступ сверху для кнопок */
+        }
+
+        #nextButton:hover, #acknowledgeButton:hover, #homeButton:hover {
+            background-color: #0056b3;
+        }
+
+        .intro-instructions {
+            width: 100%; /* Полная ширина */
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            max-width: 60%; /* Максимальная ширина для текста */
+            clear: both; /* Очищаем обтекание для текстового блока */
+        }
+
+        p {
+            margin: 0 0 1em; /* Отступы для абзацев */
+        }
+
+        .full-width {
+            display: flex; /* Используем Flexbox для размещения изображения и текста рядом */
+            align-items: flex-start; /* Вертикальное выравнивание по верхнему краю */
+            margin: 20px 0; /* Отступ сверху и снизу для всей области */
+        }
+
+        .image-container {
+            margin-right: 20px; /* Отступ справа для картинки */
+        }
+
+        img {
+            max-width: 300px; /* Ограничение максимальной ширины изображения */
+            height: auto; /* Автоматическая высота для сохранения пропорций */
+        }
+
+        /* Добавление отступа между меню и текстом */
+        #menu {
+            margin-bottom: 20px; /* Отступ снизу у меню */
+        }
+        
+        @media (max-width: 768px) {
+            #wrapper {
+                flex-direction: column; /* Вертикальное направление */
+            }
+
+            .container {
+                flex-direction: column; /* Вертикальное направление для элементов */
+            }
+
+            .main-content {
+                padding-right: 0; /* Убираем отступ справа */
+                padding-bottom: 20px; /* Добавляем отступ снизу */
+            }
+
+            .sidebar {
+                padding-left: 0; /* Убираем отступ слева */
+                display: none; /* Скрываем боковую панель на мобильных */
+            }
+
+            .intro-instructions {
+                max-width: 60%; /* Устанавливаем максимальную ширину на 100% */
+            }
+
+            #nextButton, #acknowledgeButton {
+                width: 100%; /* Кнопки занимают всю ширину */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="header">
+            <div class="logo"><a href="profile.php"><img src="style/images/logo.png" alt="" /></a></div>
+            <div class="social"></div>
+        </div>
+        <div class="clear"></div>
+        <div id="menu" class="menu opacity">
+            <ul>
+                <li><a href="registrationForm.html">Главная</a></li>
+                <li><a href="blog.html">Инструктаж</a></li>
+                <li><a href="fullwidth.html"class="active">О нас</a></li>
+                <li><a href="profile.php" >Мой профиль</a></li>
+                <li><a href="index.html">Регистрация</a></li>
+            </ul>
+            <br style="clear: left" />
+        </div>
+        
+        <div class="post-text">
+            <div class="full-width">
+                <div class="image-container" style="width: 1100px; height: 250px;"> <!-- Установите нужную ширину и высоту -->
+                    <img src="О нас.jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                
+                <!-- Модальное окно для увеличенного изображения -->
+                <div id="imageModal" class="modal" onclick="closeModal()">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="modalImage">
+                    <div id="caption"></div>
+                </div>
+                
+                <div class="text-container">
+                    <h2> О нас</h2>
+                    <p>Мы – команда, объединенная общей целью: обеспечить безопасность и готовность людей к различным чрезвычайным ситуациям. Наша работа направлена на проведение обучающих инструктажей, которые помогут каждому получить необходимые знания и навыки для правильного реагирования в экстренных ситуациях.</p>
+                    <p>Мы верим, что осведомленность и подготовленность – это ключевые факторы, способные спасти жизни. Поэтому мы стремимся предоставить доступ к качественной информации и обучению в области гражданской обороны, антитеррористической защищенности и действиям при пожаре.</p>
+                    <h2>Цели проведения инструктажей</h2>
+                    <p>Наши инструктажи проводятся с целью повышения осведомленности сотрудников о безопасности на рабочем месте и в повседневной жизни. Мы стремимся обучить людей навыкам, необходимым для предотвращения и реагирования на чрезвычайные ситуации. Каждый инструктаж направлен на создание безопасной и защищенной рабочей среды для всех.</p>
+                    <p>Мы верим, что знания — это сила, и каждый человек должен знать, как действовать в кризисных ситуациях. Поэтому мы предлагаем обучение по темам гражданской обороны, антитеррористической защищенности и действиям при пожаре, чтобы подготовить вас к любым вызовам.</p>
+                    <button id="homeButton" onclick="goToHomePage()">На главную</button> <!-- Кнопка для перехода на главную страницу -->
+                </div>
+            </div>
+
+            <div class="form-container">
+                <form class="forms" action="contact/form-handler.php" method="post">
+                    <fieldset>
+                        <input type="hidden" name="v_error" id="v-error" value="Обязательно" />
+                        <input type="hidden" name="v_email" id="v-email" value="Введите корректный email" />
+                    </fieldset>
+                </form>
+                <div class="response"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div id="copyright" class="opacity">
+        <p>© 2024 Больница г. Свирска. Все права защищены.</p>
+    </div>
+
+    <script type="text/javascript" src="style/js/scripts.js">
+        if (isset($_SESSION['user'])) {
+    $fullName = $_SESSION['user']['full_name'];
+    $phoneNumber = $_SESSION['user']['phone_number'];
+}
+    </script>
+</body>
+</html>

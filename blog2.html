@@ -1,0 +1,417 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Инструктаж</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+
+
+<script>
+$(document).ready(function() {
+    let currentIndex = 0;
+    const items = $('.video-container .video-card');
+    const itemCount = items.length;
+
+    function showItem(index) {
+        const offset = -index * 100; // Сдвиг в процентах
+        $('.video-container').css('transform', 'translateX(' + offset + '%)');
+    }
+
+    $('#next').click(function() {
+        currentIndex = (currentIndex + 1) % itemCount;
+        showItem(currentIndex);
+    });
+
+    $('#prev').click(function() {
+        currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+        showItem(currentIndex);
+    });
+
+    showItem(currentIndex);
+});
+function openModal(img) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+    var captionText = document.getElementById("caption");
+
+    modal.style.display = "block"; // Показываем модальное окно
+    modalImg.src = img.src; // Устанавливаем источник изображения
+    captionText.innerHTML = img.alt; // Устанавливаем текст под изображением
+}
+
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none"; // Скрываем модальное окно
+}
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+    }
+    #message {
+        color: green;
+        display: none;
+    }
+        
+#nextButton {
+        display: inline-block; /* Убедимся, что кнопка отображается как блочный элемент */
+        margin-top: 20px; /* Добавим отступ сверху */
+    }
+#latest-works {
+    padding: 20px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.carousel {
+    position: relative;
+    overflow: hidden;
+}
+
+.video-container {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.video-card {
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.carousel-controls {
+    margin-top: 10px;
+}
+
+#prev, #next {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#prev:hover, #next:hover {
+    background-color: #555;
+}
+
+video {
+    width: 100%; /* Адаптивная ширина видео */
+    height: auto; /* Автоматическая высота */
+}
+
+h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.intro-instructions {
+
+    width: 60%; /* 60% ширины экрана */
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+}
+
+#acknowledgeButton, #nextButton {
+    padding: 15px 30px; /* Увеличенные внутренние отступы */
+    font-size: 18px; /* Увеличенный размер шрифта */
+    background-color: #007bff; /* Цвет фона (синий) */
+    color: white; /* Цвет текста (белый) */
+    border: none; /* Убираем границу */
+    border-radius: 5px; /* Скругляем углы */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s; /* Плавный переход при наведении */
+}
+
+#acknowledgeButton:hover, #nextButton:hover {
+    background-color: #0056b3; /* Темнее при наведении */
+}
+
+#message {
+    color: green;
+    display: none;
+    font-size: 18px; /* Увеличенный размер шрифта */
+}
+
+#loading {
+        display: none;
+        font-size: 16px;
+        color: blue;
+    }
+
+    /* Медиа-запросы для мобильных */
+    @media (max-width: 768px) {
+        #wrapper {
+            flex-direction: column; /* Вертикальное направление */
+        }
+
+        .container {
+            flex-direction: column; /* Вертикальное направление для элементов */
+        }
+
+        .main-content {
+            padding-right: 0; /* Убираем отступ справа */
+            padding-bottom: 20px; /* Добавляем отступ снизу */
+        }
+
+        .sidebar {
+            padding-left: 0; /* Убираем отступ слева */
+            display: none; /* Скрываем боковую панель на мобильных */
+        }
+
+        .intro-instructions {
+            max-width: 60%; /* Устанавливаем максимальную ширину на 100% */
+        }
+
+        #nextButton, #acknowledgeButton {
+            width: 100%; /* Кнопки занимают всю ширину */
+        }
+    }
+</style>
+</head>
+</head>
+<body>
+    <!-- Полноэкранные фоны -->
+    <!-- Конец Полноэкранных фонов -->
+
+    <!-- Начало Обертки -->
+    <div id="wrapper">
+        <div id="header">
+            <div class="logo"><a href="profile.php"><img src="style/images/logo.png" alt="" /></a></div>
+            <div class="social"></div>
+        </div>
+        <div class="clear"></div>
+
+        <!-- Начало Меню -->
+        <div id="menu" class="menu opacity">
+            <ul>
+                <li><a href="registrationForm.html">Главная</a></li>
+                <li><a href="blog.html"class="active">Инструктаж</a></li>
+                <li><a href="fullwidth.html">О нас</a></li>
+                <li><a href="profile.php" >Мой профиль</a></li>
+                <li><a href="index.html">Регистрация</a></li>
+            </ul>
+            <br style="clear: left" />
+        </div>
+        <!-- Конец Меню -->
+
+        <!-- Начало Контейнера -->
+        <div id="container" class="opacity"> 
+            <!-- Начало Боковой Панели -->
+            <div class="sidebar"> 
+                <div class="sidebar-box">
+                    <h4>Вводный инструктаж.</h4>
+                    <ul class="latest-posts">
+                        <li><a href="blog.html">Гражданская оборона и ЧС</a></li>
+                        <li><a href="blog2.html"class="active">Антитеррористическая защищенность.</a></li>
+                        <li><a href="blog3.html">Инструкция о порядке действия сотрудников при пожаре </a></li>
+                        <li><a href="blog4.html">Завершение инструктажа и регистрация</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Основной контент -->
+            <div class="post-text">
+            <div class="main-content">
+                <div class="post"> 
+                    <div class="post-info">
+                        <div class="post-title" style="text-align: center;">
+                            <h1><strong>Антитеррористическая защищенность</strong></h1>
+                        </div>
+                    </div>
+                    <div class="post-text">
+                        <div class="intro-instructions">
+                            <h2>Вводный инструктаж</h2>
+                            <p>Антитеррористическая защищенность включает в себя ряд инструкций и рекомендаций, которые помогают предотвратить террористические акты и минимизировать их последствия. Вот некоторые основные инструкции и рекомендации</p>
+                        </div>
+                    </div>
+                    <div class="post-text">        
+                        <div class="carousel">
+                            <div class="video-container">
+                                <article class="video-card">
+                                    <video controls>
+                                        <source src="наглядный материал/видео/Откуда берутся террорестические идеологии.mp4" type="video/mp4">
+                                        Ваш браузер не поддерживает видео.
+                                    </video>
+                                    <h3>Откуда берутся террористические идеологии</h3>
+                                </article>
+                                <article class="video-card">
+                                    <video controls>
+                                        <source src="наглядный материал/видео/Что такое Терроризм и чем он опасен.mp4" type="video/mp4">
+                                        Ваш браузер не поддерживает видео.
+                                    </video>
+                                    <h3>Что такое Терроризм и чем он опасен</h3>
+                                </article>
+                                <article class="video-card">
+                                    <video controls>
+                                        <source src="наглядный материал/видео/Террорист это человект который совершил теракт.mp4" type="video/mp4">
+                                        Ваш браузер не поддерживает видео.
+                                    </video>
+                                    <h3>Террорист это человек который совершил теракт</h3>
+                                </article>
+                                <article class="video-card">
+                                    <video controls>
+                                        <source src="наглядный материал/видео/Террористы это преступники.mp4" type="video/mp4">
+                                        Ваш браузер не поддерживает видео.
+                                    </video>
+                                    <h3>Террористы это преступники</h3>
+                                </article>
+                                <article class="video-card">
+                                    <video controls>
+                                        <source src="наглядный материал/видео/Что такое Терроризм и чем он опасен.mp4" type="video/mp4">
+                                        Ваш браузер не поддерживает видео.
+                                    </video>
+                                    <h3>Что такое Терроризм и чем он опасен</h3>
+                                </article>
+                            </div>
+                            <div class="carousel-controls">
+                                <button id="prev">Prev</button>
+                                <button id="next">Next</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <!-- Конец Поста -->
+<p>
+    <div class="post-text">
+                            <strong>ТЕРРОРИСТИЧЕСКИЙ АКТ</strong> - совершение взрыва, поджога или иных действий, устрашающих население и создающих опасность гибели человека, причинения значительного имущественного ущерба либо наступления иных тяжких последствий, в целях дестабилизации деятельности органов власти или международных организаций либо воздействия на принятие ими решений, а также угроза совершения указанных действий в целях воздействия на принятие решений органами власти или международными организациями.
+                        </p>
+                    
+                        <div class="image-container">
+                            <img src="наглядный материал/Картинки Антитерр/i.webp" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                        </div>
+                        
+                        <!-- Модальное окно для увеличенного изображения -->
+                        <div id="imageModal" class="modal" onclick="closeModal()">
+                            <span class="close">&times;</span>
+                            <img class="modal-content" id="modalImage">
+                            <div id="caption"></div>
+                        </div>
+
+                        <h2>1. Действия при обнаружении предмета, похожего на взрывное устройство</h2>
+                    <p>
+                        <ol>
+                            <li>Не трогать, не подходить, не передвигать обнаруженный подозрительный предмет! Не курить, воздерживаться от использования средств радиосвязи, в том числе и мобильных, вблизи данного предмета.</li>
+                            <li>Немедленно сообщить об обнаружении подозрительного предмета администрации и в правоохранительные органы по телефону 07-16.</li>
+                            <li>Зафиксировать время и место обнаружения.</li>
+                            <li>Освободить от людей опасную зону в радиусе не менее 100 метров.</li>
+                            <li>По возможности обеспечить охрану подозрительного предмета и опасной зоны.</li>
+                            <li>Необходимо обеспечить (помочь обеспечить) организованную эвакуацию людей с территории, прилегающей к опасной зоне.</li>
+                            <li>Дождаться прибытия представителей правоохранительных органов, указать место расположения подозрительного предмета, время и обстоятельства его обнаружения.</li>
+                            <li>Далее действовать по указанию представителей правоохранительных органов.</li>
+                            <li>Не сообщать об угрозе взрыва никому, кроме тех, кому необходимо знать о случившемся, чтобы не создавать панику.</li>
+                            <li>Проинструктировать персонал о том, что запрещается принимать на хранение от посторонних лиц какие-либо предметы и вещи.</li>
+                            <li>Быть готовым описать внешний вид предмета, похожего на взрывное устройство.</li>
+                            <li>Предмет может иметь любой вид: сумка, сверток, пакет и т.п., находящиеся бесхозно в месте возможного присутствия большого количества людей вблизи взрыво- и пожароопасных мест, расположения различного рода коммуникаций.</li>
+                            <li>Также по своему внешнему виду он может быть похож на взрывное устройство (граната, мина, снаряд и т.п.): могут торчать проводки, веревочки, изолента, скотч; возможно тиканье часового механизма, механическое жужжание, другие звуки; может иметь запах миндаля или незнакомый запах.</li>
+                        </ol>
+                    </p>
+                        <div class="image-container">
+                            <img src="наглядный материал/Картинки Антитерр/1.При подозрительном предмете.jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                        </div>
+                        
+                        <!-- Модальное окно для увеличенного изображения -->
+                        <div id="imageModal" class="modal" onclick="closeModal()">
+                            <span class="close">&times;</span>
+                            <img class="modal-content" id="modalImage">
+                            <div id="caption"></div>
+                        </div>
+                        <h2>2. Действия при захвате заложников</h2>
+                        <p>
+                        <ol>
+                            <li>Беспрекословно выполнять требования террористов, если они не несут угрозы вашей жизни и здоровью.</li>
+                            <li>Постарайтесь отвлечься от неприятных мыслей.</li>
+                            <li>Осмотрите место, где вы находитесь, отметьте пути отступления укрытия.</li>
+                            <li>Старайтесь не выделяться в группе заложников.</li>
+                            <li>Если вам необходимо встать, перейти на другое место, спрашивайте разрешения.</li>
+                            <li>Старайтесь занять себя: читать, писать и т.д.</li>
+                            <li>Не употребляйте алкоголь.</li>
+                            <li>Отдайте личные вещи, которые требуют террористы.</li>
+                            <li>Если вы попали в число освобожденных, сообщите представителям спецслужб следующую информацию: число захватчиков, их место расположения, вооружения, число пассажиров, моральное и физическое состояние террористов, особенности их поведения, другую информацию.</li>
+                            <li>При стрельбе ложитесь на пол или укройтесь, но никуда не бегите.</li>
+                            <li>При силовом методе освобождения заложников, четко выполняйте все распоряжения представителей спецслужб.</li>
+                        </p>
+                            <div class="image-container">
+                                <img src="наглядный материал/Картинки Антитерр/2. При захвате в заложники.png" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                            </div>
+                            
+                            <!-- Модальное окно для увеличенного изображения -->
+                            <div id="imageModal" class="modal" onclick="closeModal()">
+                                <span class="close">&times;</span>
+                                <img class="modal-content" id="modalImage">
+                                <div id="caption"></div>
+                            </div>
+                        </ol>
+                    </div>
+
+                <!-- Конец Поста -->
+            
+            <!-- Конец Основного контента -->
+        
+        <!-- Конец Контейнера -->
+
+    <!-- End Latest Works -->
+    <div>
+        <button id="acknowledgeButton" aria-label="Подтвердить ознакомление">Я ознакомлен с материалом</button>
+        <button id="nextButton" style="display:none;" aria-label="Перейти на следующий сайт">Перейти на следующий сайт</button>
+        <div id="message" style="display:none;"></div>
+    </div>
+    
+    <script>
+        $(document).ready(function () {
+            const userId = "<?php echo isset($_SESSION['user']) ? $_SESSION['user']['phone_number'] : ''; ?>"; // Уникальный идентификатор пользователя
+            const materialIndex = 1; // Установите индекс материала
+    
+            // Проверяем, был ли пользователь ознакомлен
+            function checkAcknowledgement() {
+                // Отправляем AJAX запрос для проверки статуса на сервере
+                $.get('check_user_status.php', { user_id: userId, material_index: materialIndex }, function(response) {
+                    if (response.acknowledged) {
+                        $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                        $('#nextButton').show(); // Показываем кнопку для перехода
+                        $('#message').text('Вы уже ознакомились с этим материалом.').css('color', 'orange').show(); // Предупреждение
+                    }
+                }, 'json');
+            }
+    
+            checkAcknowledgement(); // Проверяем статус при загрузке
+    
+            $('#acknowledgeButton').on('click', function () {
+                // Устанавливаем флаг на сервере, что пользователь ознакомился с материалом
+                $.post('update_user_status.php', {
+                    user_id: userId,
+                    material_index: materialIndex
+                })
+                .done(function(response) {
+                    const jsonResponse = JSON.parse(response);
+                    $('#message').text('Вы успешно подтвердили ознакомление.').show();
+                    $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                    $('#nextButton').show(); // Показываем кнопку для перехода
+                })
+                .fail(function() {
+                    $('#message').text('Ошибка при обновлении статуса.').css('color', 'red').show();
+                });
+            });
+    
+            // Обработка нажатия на кнопку для перехода
+            $('#nextButton').on('click', function () {
+                window.location.href = 'blog3.html'; // Переход на следующую страницу
+            });
+        });
+    </script>
+</div>
+
+<script type="text/javascript" src="style/js/scripts.js"></script>
+</body>
+</html>

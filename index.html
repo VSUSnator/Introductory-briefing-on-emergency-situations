@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация/Вход пользователя</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #registrationFormContainer {
+            background: white;
+            padding: 30px; /* Увеличиваем отступы внутри контейнера */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 400px; /* Увеличиваем ширину контейнера */
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px; /* Добавляем отступ снизу заголовка */
+        }
+
+        input[type="text"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 12px; /* Увеличиваем внутренний отступ полей ввода */
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Учитываем отступы внутри ширины */
+        }
+
+        button {
+            width: 100%;
+            padding: 12px; /* Увеличиваем внутренний отступ кнопки */
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .hidden { display: none; }
+        .error { color: red; background-color: #f8d7da; border: 1px solid #f5c6cb; }
+        .success { color: green; background-color: #d4edda; border: 1px solid #c3e6cb; }
+
+        #materialsContainer {
+            margin-top: 20px;
+        }
+
+        #materialsList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #materialsList li {
+            background: #e9ecef;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        #toggleForm {
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            padding: 0;
+            margin-top: 10px;
+            text-align: center;
+            display: block;
+            width: 100%;
+        }
+
+        #toggleForm:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="registrationFormContainer">
+        <h2 id="formTitle">Регистрация пользователя</h2>
+        <form id="registrationForm" action="register_user.php" method="post">
+            <input type="text" id="full_name" name="full_name" placeholder="Ваше имя" required writingsuggestions="on">
+            <input type="tel" id="phone_number" name="phone_number" placeholder="Телефон" required writingsuggestions>
+            <select id="profession" name="profession" required>
+                <option value="">Выберите профессию</option>
+                <option value="врач">Врач</option>
+                <option value="медсестра">Медсестра</option>
+                <option value="администратор">Администратор</option>
+                <option value="лаборант">Лаборант</option>
+                <option value="фельдшер">Фельдшер</option>
+                <!-- Добавьте другие профессии здесь -->
+            </select>
+            <button type="submit" id="submitButton">Зарегистрироваться</button>
+        </form>
+        <div id="message" role="alert" class="hidden"></div>
+        <button id="toggleForm" aria-label="Переключить форму">Уже зарегистрированы? Войти</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            let isLogin = false;
+
+            function formatPhoneNumber(rawNumber) {
+                const digits = rawNumber.replace(/\D/g, '');
+                if (digits.length === 0) return '';
+                let formattedValue = '+7 ';
+                if (digits.length > 1) formattedValue += `(${digits.slice(1, 4)}) `;
+                if (digits.length > 4) formattedValue += `${digits.slice(4, 7)}-`;
+                if (digits.length > 7) formattedValue += `${digits.slice(7, 9)}-`;
+                if (digits.length > 9) formattedValue += `${digits.slice(9)}`;
+                return formattedValue;
+            }
+
+            $('#registrationForm').on('submit', function (e) {
+                e.preventDefault();
+
+                const fullName = $('#full_name').val().trim();
+                let phoneNumber = $('#phone_number').val().trim();
+                let selectedProfession = $('#profession').val();
+                let digits = phoneNumber.replace(/\D/g, '');
+
+                if (!/^7\d{10}$/.test(digits)) {
+                    $('#message').text('Введите корректный номер телефона в формате: +7 (XXX) XXX-XX-XX.').show().removeClass('success').addClass('error');
+                    return;
+                }
+
+                phoneNumber = formatPhoneNumber(phoneNumber);
+                const action = 'register_user.php';
+
+                $.post(action, {
+                    full_name: isLogin ? null : fullName,
+                    phone_number: phoneNumber,
+                    profession: selectedProfession,
+                    action: isLogin ? 'login' : 'register'
+                })
+                .done(function (response) {
+                    try {
+                        const jsonResponse = JSON.parse(response);
+                        $('#message').text(jsonResponse.message).show().removeClass('error').addClass('success');
+
+                        // Проверка на успешную регистрацию или вход
+                        if (jsonResponse.success) {
+                            // Отображение материалов, если они есть
+                            if (jsonResponse.materials) {
+                                $('#materialsList').empty(); // Очистка списка материалов
+                                jsonResponse.materials.forEach(material => {
+                                    $('#materialsList').append(`<li>${material}</li>`);
+                                });
+                                $('#materialsContainer').removeClass('hidden').show();
+                            } else {
+                                $('#materialsContainer').addClass('hidden');
+                            }
+
+                            // Если это вход, перенаправляем на профиль
+                            if (isLogin) {
+                                setTimeout(() => window.location.href = 'profile.php', 2000);
+                            } else {
+                                // Если это регистрация, перенаправляем на профиль
+                                setTimeout(() => window.location.href = 'profile.php', 2000);
+                            }
+                        }
+                    } catch (error) {
+                        $('#message').text('Ошибка обработки ответа от сервера.').show().removeClass('success').addClass('error');
+                    }
+                })
+                .fail(function (xhr) {
+                    const errorMessage = xhr.responseJSON && xhr.responseJSON.message ? xhr.responseJSON.message : 'Ошибка при регистрации/входе. Попробуйте снова.';
+                    $('#message').text(errorMessage).show().removeClass('success').addClass('error');
+                });
+            });
+
+            $('#toggleForm').on('click', function () {
+                isLogin = !isLogin;
+                $('#formTitle').text(isLogin ? 'Вход в аккаунт' : 'Регистрация пользователя');
+                $('#submitButton').text(isLogin ? 'Войти' : 'Зарегистрироваться');
+                $(this).text(isLogin ? 'Еще не зарегистрированы? Зарегистрироваться' : 'Уже зарегистрированы? Войти');
+                $('#message').hide();
+                $('#materialsContainer').addClass('hidden'); // Скрываем материалы при переключении форм
+            });
+
+            $('#phone_number').on('input', function () {
+                $(this).val(formatPhoneNumber($(this).val()));
+            });
+        });
+    </script>
+</body>
+</html>

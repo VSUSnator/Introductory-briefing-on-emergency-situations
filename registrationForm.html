@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Инструктаж</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+    
+  
+      
+      <style>
+          body {
+              font-family: Arial, sans-serif;
+              margin: 0;
+              padding: 20px;
+              background-color: #f4f4f4;
+          }
+          #message {
+              color: green;
+              display: none;
+          }
+              
+      #nextButton {
+              display: inline-block; /* Убедимся, что кнопка отображается как блочный элемент */
+              margin-top: 20px; /* Добавим отступ сверху */
+          }
+      #latest-works {
+          padding: 20px;
+          background-color: #f9f9f9;
+          text-align: center;
+      }
+      
+      #prev:hover, #next:hover {
+          background-color: #555;
+      }
+      
+      h3 {
+          margin: 10px 0;
+          font-size: 16px;
+          color: #333;
+      }
+      
+      .intro-instructions {
+        
+    width: 800px; /* Установите фиксированную ширину */
+    margin: 20px auto; /* Центрирование контейнера */
+    width: 60%; /* 60% ширины экрана */
+    margin: 20px 0;
+    padding: 20px; /* Внутренние отступы вокруг текста */
+    background-color: #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Добавляем тень для глубины */
+    box-sizing: border-box; /* Учитываем отступы в ширине контейнера */
+}
+
+.intro-instructions h3, .intro-instructions h4 {
+    margin: 10px 0; /* Отступы для заголовков */
+    color: #333; /* Цвет заголовков */
+}
+
+.intro-instructions ul {
+    list-style-type: disc; /* Стилизация списка */
+    padding-left: 20px; /* Отступ слева для списка */
+}
+
+.intro-instructions li {
+    margin-bottom: 10px; /* Отступы между элементами списка */
+    line-height: 1.5; /* Высота строки для лучшего восприятия текста */
+}
+      
+      #acknowledgeButton, #nextButton {
+          padding: 15px 30px; /* Увеличенные внутренние отступы */
+          font-size: 18px; /* Увеличенный размер шрифта */
+          background-color: #007bff; /* Цвет фона (синий) */
+          color: white; /* Цвет текста (белый) */
+          border: none; /* Убираем границу */
+          border-radius: 5px; /* Скругляем углы */
+          cursor: pointer; /* Указатель при наведении */
+          transition: background-color 0.3s; /* Плавный переход при наведении */
+      }
+      
+      #acknowledgeButton:hover, #nextButton:hover {
+          background-color: #0056b3; /* Темнее при наведении */
+      }
+      
+      #message {
+          color: green;
+          display: none;
+          font-size: 18px; /* Увеличенный размер шрифта */
+      }
+      
+      #loading {
+              display: none;
+              font-size: 16px;
+              color: blue;
+          }
+      
+          #registerButton {
+    display: inline-block; /* Чтобы кнопка отображалась как блочный элемент */
+    background-color: #4caf50; /* Цвет фона */
+    color: white; /* Цвет текста */
+    padding: 12px 20px; /* Внутренние отступы */
+    border-radius: 5px; /* Скругление углов */
+    text-decoration: none; /* Удаление подчеркивания */
+    font-size: 16px; /* Размер шрифта */
+    transition: background-color 0.3s; /* Плавный переход цвета */
+}
+
+#registerButton:hover {
+    background-color: #45a049; /* Цвет при наведении */
+}
+#container {
+            display: flex; /* Используйте flexbox для расположения элементов */
+            justify-content: space-between; /* Распределяем элементы по горизонтали */
+        }
+
+        .intro-instructions {
+            width: 60%; /* Задаем ширину блока с текстом */
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .empty-block {
+            width: 30%; /* Задаем ширину пустого блока */
+            background-color: #d3d3d3; /* Цвет фона для пустого блока */
+            margin-left: 20px; /* Отступ между текстом и пустым блоком */
+        }
+    </style>
+      </style>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <div class="logo"><a href="profile.php"><img src="style/images/logo.png" alt="Логотип" /></a></div>
+            <div class="social"></div>
+        </div>
+        <div class="clear"></div>
+
+        <div id="menu" class="menu opacity">
+            <ul>
+                <li><a href="registrationForm.html"class="active">Главная</a></li>
+                <li><a href="blog.html">Инструктаж</a></li>
+                <li><a href="fullwidth.html">О нас</a></li>
+                <li><a href="profile.php" >Мой профиль</a></li>
+                <li><a href="index.html">Регистрация</a></li>
+            </ul>
+            <br style="clear: left" />
+        </div>
+
+        <div id="container" class="opacity"> 
+            <div class="container"> 
+                <div class="main-content">
+                    <div class="post-info">
+                        <div class="intro-instructions">
+                          <div class="post-title">
+                            <p><strong><h2>Вводный инструктаж</h2></strong></p>
+                          </div>
+                          <p><strong><h3>Добро пожаловать!</h3></strong></p>
+                          <p>Эта страница предназначена для того, чтобы пройти вводный инструктаж. Пожалуйста, ознакомьтесь с необходимой информацией, чтобы подготовиться к следующему шагу.</p>
+                          <p><strong><h4>Темы инструктажа:</h4></strong></p>
+                          <ul>
+                              <li><strong>Гражданская оборона и ЧС:</strong> Вы узнаете о мерах по защите населения и территорий в условиях чрезвычайных ситуаций, а также о действиях, которые необходимы для обеспечения безопасности.</li>
+                              <li><strong>Антитеррористическая защищенность:</strong> Мы рассмотрим основные принципы обеспечения безопасности на объектах и в общественных местах, а также действия сотрудников в случае угрозы терроризма.</li>
+                              <li><strong>Инструкция о порядке действия сотрудников при пожаре:</strong> Вы получите информацию о том, как правильно действовать в случае возникновения пожара, как эвакуироваться и что делать до прибытия пожарных.</li>
+                              <li><strong>Завершение инструктажа и регистрация:</strong> В конце инструктажа вам необходимо будет зарегистрироваться и подтвердить свое ознакомление с материалами.</li>
+                          </ul>
+                      </div>
+                        <div id="intro">
+                            <a id="nextButton" href="blog.html">Гражданская оборона и ЧС</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="copyright" class="opacity">
+            <p>© 2024 Больница г. Свирска. Все права защищены.</p>
+        </div>
+    </div>
+</body>
+</html>

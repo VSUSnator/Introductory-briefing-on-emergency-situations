@@ -1,0 +1,276 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<meta charset="UTF-8">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Инструктаж</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" media="all" />
+
+
+    <script>
+        $(document).ready(function() {
+            let currentIndex = 0;
+            const items = $('.video-container .video-card');
+            const itemCount = items.length;
+        
+            function showItem(index) {
+                const offset = -index * 100; // Сдвиг в процентах
+                $('.video-container').css('transform', 'translateX(' + offset + '%)');
+            }
+        
+            $('#next').click(function() {
+                currentIndex = (currentIndex + 1) % itemCount;
+                showItem(currentIndex);
+            });
+        
+            $('#prev').click(function() {
+                currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+                showItem(currentIndex);
+            });
+        
+            showItem(currentIndex);
+        });
+        </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .intro-instructions {
+            width: 60%;
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #e9ecef;
+            border-radius: 8px;
+            text-align: left;
+        }
+        #message {
+            display: none;
+            margin-top: 10px;
+            color: green;
+            font-size: 18px;
+        }
+        .menu {
+            overflow: hidden;
+            background-color: #6f42c1;
+        }
+        .menu ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .menu li {
+            float: left;
+        }
+        .menu li a {
+            display: block;
+            color: white;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .menu li a:hover {
+            background-color: #575757;
+        }
+        .acknowledge-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin: 20px 0;
+        }
+        .acknowledgeButton {
+            margin-bottom: 10px;
+        }
+        #registrationForm {
+            display: none;
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #acknowledgeButton, #nextButton {
+            padding: 15px 30px; 
+            font-size: 18px; 
+            background-color: #ff0000; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s;
+        }
+        #acknowledgeButton:hover, #nextButton:hover {
+            background-color: #0056b3; 
+        }
+        #registrationForm {
+        display: none;
+        background-color: #f9f9f9; /* Светлый фон формы */
+        border: 1px solid #ccc; /* Рамка вокруг формы */
+        border-radius: 8px; /* Закругленные углы */
+        padding: 20px; /* Внутренние отступы */
+        max-width: 400px; /* Максимальная ширина формы */
+        margin: 20px 0; /* Убираем автоматическое центрирование и оставляем отступы сверху и снизу */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для формы */
+    }
+
+    #registrationForm h2 {
+        font-size: 1.8em; /* Увеличенный размер шрифта заголовка */
+        text-align: left; /* Выровнять заголовок по левому краю */
+        color: #333; /* Цвет заголовка */
+    }
+
+    #registrationForm label {
+        display: block; /* Показать метки как блочные элементы */
+        margin: 10px 0 5px; /* Отступы для меток */
+        font-weight: bold; /* Жирный текст для меток */
+    }
+
+    #registrationForm input {
+        width: 100%; /* Ширина полей ввода на 100% */
+        padding: 10px; /* Внутренние отступы */
+        margin-bottom: 15px; /* Отступы между полями */
+        border: 1px solid #ccc; /* Рамка вокруг полей ввода */
+        border-radius: 4px; /* Закругленные углы */
+        font-size: 1em; /* Размер шрифта полей ввода */
+    }
+
+    #registrationForm button {
+        width: 100%; /* Ширина кнопки на 100% */
+        padding: 12px; /* Внутренние отступы кнопки */
+        font-size: 1.2em; /* Размер шрифта кнопки */
+        background-color: #28a745; /* Цвет кнопки */
+        color: white; /* Цвет текста на кнопке */
+        border: none; /* Убрать рамку */
+        border-radius: 4px; /* Закругленные углы кнопки */
+        cursor: pointer; /* Курсор при наведении */
+    }
+
+    #registrationForm button:hover {
+        background-color: #218838; /* Темный цвет при наведении */
+    }
+    
+        /* Медиа-запросы для мобильных */
+        @media (max-width: 768px) {
+            #wrapper {
+                flex-direction: column; /* Вертикальное направление */
+            }
+
+            .container {
+                flex-direction: column; /* Вертикальное направление для элементов */
+            }
+
+            .main-content {
+                padding-right: 0; /* Убираем отступ справа */
+                padding-bottom: 20px; /* Добавляем отступ снизу */
+            }
+
+            .sidebar {
+                padding-left: 0; /* Убираем отступ слева */
+                display: none; /* Скрываем боковую панель на мобильных */
+            }
+
+            .intro-instructions {
+                max-width: 60%; /* Устанавливаем максимальную ширину на 100% */
+            }
+
+            #nextButton, #acknowledgeButton {
+                width: 100%; /* Кнопки занимают всю ширину */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!-- Header Section -->
+        <header id="header">
+            <div class="logo">
+                <a href="profile.php">
+                    <img src="style/images/logo.png" alt="Логотип" />
+                </a>
+            </div>
+            <div class="social"></div>
+        </header>
+
+        <!-- Navigation Menu -->
+        <nav id="menu" class="menu opacity">
+            <ul>
+                <li><a href="registrationForm.html">Главная</a></li>
+                <li><a href="blog.html"class="active">Инструктаж</a></li>
+                <li><a href="fullwidth.html">О нас</a></li>
+                <li><a href="profile.php" >Мой профиль</a></li>
+                <li><a href="index.html">Регистрация</a></li>
+            </ul>
+        </nav>
+        <main id="container" class="opacity">
+            <!-- Sidebar Section -->
+            <aside class="sidebar">
+                <div class="sidebar-box">
+                    <h4>Вводный инструктаж</h4>
+                    <ul class="latest-posts">
+                        <li><a href="blog.html">Гражданская оборона и ЧС</a></li>
+                        <li><a href="blog2.html">Антитеррористическая защищенность</a></li>
+                        <li><a href="blog3.html">Инструкция о порядке действия сотрудников при пожаре</a></li>
+                        <li><a href="blog4.html" class="active">Завершение инструктажа и регистрация</a></li>
+                    </ul>
+                </div>
+            </aside>
+        
+            <section class="intro-instructions">
+                <p>
+                    Потвердите ознакомление с Гражданская оборона и ЧС, Антитеррористическая защищенность и Инструкция о порядке действия сотрудников при пожаре.
+                </p>
+            </section>
+        
+
+            <!-- Main Content Section -->
+    <section class="intro-instructions">
+        <p>Потвердите ознакомство с инструктажом</p>
+        <button id="acknowledgeButton" style="font-size: 1.5em; padding: 20px 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;" aria-label="Подтвердить ознакомление с инструктажом">Я ознакомлен с инструктажом</button>
+    </section>
+
+    <!-- Кнопка для перехода на UserDataForm.html, скрыта по умолчанию -->
+    <button id="userDataButton" style="display: none; font-size: 1.5em; padding: 20px 40px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">
+        Перейти к форме регистрации
+    </button>
+
+    <!-- Message Display -->
+    <div id="message" role="alert"></div>
+    <div id="errorMessage" style="display:none; color:red; font-size: 1.5em; font-weight: bold; text-align: center; padding: 10px; border: 2px solid red; background-color: #ffe6e6; margin: 20px 0;"></div>
+
+    <!-- Кнопка возврата -->
+    <button id="backButton" style="display:none; font-size: 1.5em; padding: 20px 40px; background-color: #ff4d4d; color: white; border: none; border-radius: 5px; cursor: pointer; margin-top: 20px;">Назад к материалам</button>
+
+    <script>
+        $(document).ready(function () {
+            // Убрано предупреждение о не пройденном инструктаже
+
+            $('#backButton').on('click', function () {
+                window.location.href = 'blog.html'; // Переход на страницу с материалами
+            });
+            
+            // Обработка перехода на UserDataForm.html
+            $('#userDataButton').on('click', function () {
+                window.location.href = 'profile.php'; // Переход на страницу регистрации
+            });
+
+            // Обработка нажатия кнопки "Я ознакомлен с инструктажом"
+            $('#acknowledgeButton').on('click', function() {
+                $(this).text('Спасибо за ознакомление!').prop('disabled', true); // Изменяем текст кнопки и отключаем её
+                $('#userDataButton').show(); // Показываем кнопку для перехода
+            });
+            if (isset($_SESSION['user'])) {
+    $fullName = $_SESSION['user']['full_name'];
+    $phoneNumber = $_SESSION['user']['phone_number'];
+}
+
+            // Инициализация функций
+        });
+    </script>
+</main>

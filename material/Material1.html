@@ -1,0 +1,342 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Инструктаж</title>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="light/material/style.css" media="all" />
+
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        let currentIndex = 0;
+        const items = $('.video-container .video-card');
+        const itemCount = items.length;
+    
+        function showItem(index) {
+            const offset = -index * 100; // Сдвиг в процентах
+            $('.video-container').css('transform', 'translateX(' + offset + '%)');
+        }
+    
+        $('#next').click(function() {
+            currentIndex = (currentIndex + 1) % itemCount;
+            showItem(currentIndex);
+        });
+    
+        $('#prev').click(function() {
+            currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+            showItem(currentIndex);
+        });
+    
+        showItem(currentIndex);
+    });
+    function openModal(img) {
+
+
+}
+
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none"; // Скрываем модальное окно
+}
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #message {
+            color: green;
+            display: none;
+        }
+            
+    #nextButton {
+            display: inline-block; /* Убедимся, что кнопка отображается как блочный элемент */
+            margin-top: 20px; /* Добавим отступ сверху */
+        }
+    #latest-works {
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-container {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .video-card {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .carousel-controls {
+        margin-top: 10px;
+    }
+    
+    #prev, #next {
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #prev:hover, #next:hover {
+        background-color: #555;
+    }
+    
+    video {
+        width: 100%; /* Адаптивная ширина видео */
+        height: auto; /* Автоматическая высота */
+    }
+    
+    h3 {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .intro-instructions {
+    
+        width: 60%; /* 60% ширины экрана */
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+    }
+
+    #acknowledgeButton, #nextButton {
+        padding: 15px 30px; /* Увеличенные внутренние отступы */
+        font-size: 18px; /* Увеличенный размер шрифта */
+        background-color: #007bff; /* Цвет фона (синий) */
+        color: white; /* Цвет текста (белый) */
+        border: none; /* Убираем границу */
+        border-radius: 5px; /* Скругляем углы */
+        cursor: pointer; /* Указатель при наведении */
+        transition: background-color 0.3s; /* Плавный переход при наведении */
+    }
+
+    #acknowledgeButton:hover, #nextButton:hover {
+        background-color: #0056b3; /* Темнее при наведении */
+    }
+
+    #message {
+        color: green;
+        display: none;
+        font-size: 18px; /* Увеличенный размер шрифта */
+    }
+
+    #loading {
+            display: none;
+            font-size: 16px;
+            color: blue;
+        }
+
+        /* Медиа-запросы для мобильных */
+        @media (max-width: 768px) {
+            #wrapper {
+                flex-direction: column; /* Вертикальное направление */
+            }
+
+            .container {
+                flex-direction: column; /* Вертикальное направление для элементов */
+            }
+
+            .main-content {
+                padding-right: 0; /* Убираем отступ справа */
+                padding-bottom: 20px; /* Добавляем отступ снизу */
+            }
+
+            .sidebar {
+                padding-left: 0; /* Убираем отступ слева */
+                display: none; /* Скрываем боковую панель на мобильных */
+            }
+
+            .intro-instructions {
+                max-width: 60%; /* Устанавливаем максимальную ширину на 100% */
+            }
+
+            #nextButton, #acknowledgeButton {
+                width: 100%; /* Кнопки занимают всю ширину */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrapper">
+        <div id="header">
+            <div class="logo"><a href="profile.php"><img src="light/material/style/images/logo.png" alt="" /></a></div>
+            <div class="social"></div>
+        </div>
+        <div class="clear"></div>
+        <!-- Начало Меню -->
+        <div id="menu" class="menu opacity">
+            <ul>
+                <li><a href="light/material/registrationForm.html">Главная</a></li>
+                <li><a href="light/material/blog.html" class="active">Инструктаж</a></li>
+                <li><a href="light/material/fullwidth.html">О нас</a></li>
+                <li><a href="light/material/profile.php">Мой профиль</a></li>
+                <li><a href="light/material/index.html">Регистрация</a></li>
+                </li>
+            </ul>
+            <br style="clear: left" />
+        </div>
+        <!-- Конец Меню -->  
+  
+  <!-- Начало Контейнера -->
+  <div id="container" class="opacity"> 
+    <!-- Начало Боковой Панели -->
+    <div class="sidebar"> 
+        <div class="sidebar-box">
+            <h4>Вводный инструктаж.</h4>
+            <ul class="latest-posts">
+                <li><a href="blog.html"class="active">Гражданская оборона и ЧС</a></li>
+                <li><a href="blog2.html">Антитеррористическая защищенность.</a></li>
+                <li><a href="blog3.html">Инструкция о порядке действия сотрудников при пожаре </a></li>
+                <li><a href="blog4.html">Завершение инструктажа и регистрация</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+<!-- Основной контент -->
+<div class="main-content">
+  <div class="post"> 
+      <div class="post-info">
+          <div class="post-title" style="text-align: center;">
+             
+              
+          </div>
+          
+      </div>
+      <div class="post-text"> 
+        <div class="main-content">
+            <div class="post"> 
+                <div class="post-info">
+                    <div class="post-title" style="text-align: center;">
+                        <h1><strong>Гражданская оборона и ЧС</strong></h1>
+                    </div>
+                </div>
+                <div class="post-text">
+                    <div class="intro-instructions">
+                        <h2>Вводный инструктаж</h2>
+                        <p>Гражданская оборона и чрезвычайные ситуации (ЧС) — это важные компоненты системы обеспечения безопасности населения и защиты его жизни в условиях угроз и опасностей. Рассмотрим подробнее каждую из этих категорий.</p>
+                    </div>
+                </div>
+                <div class="post-text">        
+                    <div class="carousel">
+                        <div class="video-container">
+                            <article class="video-card">
+                                <video controls>
+                                    <source src="light/material/наглядный материал/видео/Внимание всем на работе 1 часть.mp4" type="video/mp4">
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                                <h3>Внимание всем на работе 1 часть.mp4</h3>
+                            </article>
+                            <article class="video-card">
+                                <video controls>
+                                    <img src="light/material/наглядный материал/картинкм чс/7.При урагане, буре,смерче.jpg" class="thumbnail" onclick="openModal(this)">
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                                <h3>Внимание всем на работе. 2 часть.</h3>
+                            </article>
+                        </div>
+                        <div class="carousel-controls">
+                            <button id="prev">Prev</button>
+                            <button id="next">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+  
+                    <p>
+                        <strong>7. Во время урагана, бури, смерча:</strong><br />
+                        Находясь в здании, отойдите от окна и займите безопасное место у стен внутренних помещений - в коридоре, в ванной, в туалете, в прочных шкафах, под столом. 
+                        Отключите электроэнергию. На улице держитесь дальше от легких построек, линий электропередачи, мачт, вышек, деревьев, водоемов и промышленных объектов. 
+                        Для защиты от летящих обломков и осколков используйте ящики, картонные коробки и другие подручные средства. 
+                        Старайтесь быстрее укрыться в каменных зданиях, подвалах и других заглубленных помещениях. Не заходите в поврежденные и ветхие здания.          
+
+                    <div class="image-container">
+                        <img src="light/material/наглядный материал/картинкм чс/7.При урагане, буре,смерче.jpg" class="thumbnail" onclick="openModal(this)">
+                    </div>
+                    
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+              
+                </div>
+                
+                <div>
+                    <button id="acknowledgeButton" aria-label="Подтвердить ознакомление">Я ознакомлен с материалом</button>
+                    <button id="nextButton" style="display:none;" aria-label="Перейти на следующий сайт">Перейти на следующий сайт</button>
+                    <div id="message" style="display:none;"></div>
+                </div>
+                
+                <script>
+                    $(document).ready(function () {
+                        const userId = "<?php echo isset($_SESSION['user']) ? $_SESSION['user']['phone_number'] : ''; ?>"; // Уникальный идентификатор пользователя
+                        const materialIndex = 0; // Установите индекс материала
+                    
+                        // Проверяем, был ли пользователь ознакомлен
+                        function checkAcknowledgement() {
+                            if (!userId) {
+                                $('#message').text('Пожалуйста, войдите в систему.').css('color', 'red').show();
+                                return; // Прекращаем выполнение
+                            }
+                    
+                            $.get('check_user_status.php', { user_id: userId, material_index: materialIndex }, function(response) {
+                                console.log(response); // Для отладки
+                                if (response.acknowledged) {
+                                    $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                                    $('#nextButton').show(); // Показываем кнопку для перехода
+                                    $('#message').text('Вы уже ознакомились с этим материалом.').css('color', 'orange').show(); // Предупреждение
+                                }
+                            }, 'json');
+                        }
+                    
+                        checkAcknowledgement(); // Проверяем статус при загрузке
+                    
+                        $('#acknowledgeButton').on('click', function () {
+                            // Устанавливаем флаг на сервере, что пользователь ознакомился с материалом
+                            $.post('update_user_status.php', {
+                                user_id: userId,
+                                material_index: materialIndex
+                            })
+                            .done(function(response) {
+                                $('#message').text('Вы успешно подтвердили ознакомление.').show();
+                                $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                                $('#nextButton').show(); // Показываем кнопку для перехода
+                            })
+                            .fail(function(jqXHR, textStatus, errorThrown) {
+                                console.error('Ошибка:', textStatus, errorThrown);
+                                $('#message').text('Ошибка при обновлении статуса.').css('color', 'red').show();
+                            });
+                        });
+                    
+                        // Обработка нажатия на кнопку для перехода
+                        $('#nextButton').on('click', function () {
+                            window.location.href = 'Material2.html'; // Переход на следующую страницу
+                        });
+                    });
+                    </script>
+                
+                <script type="text/javascript" src="style/js/scripts.js"></script>
+</body>
+</html>

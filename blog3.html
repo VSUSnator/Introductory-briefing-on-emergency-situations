@@ -1,0 +1,443 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Инструктаж</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />
+
+
+<script>
+    $(document).ready(function() {
+        let currentIndex = 0;
+        const items = $('.video-container .video-card');
+        const itemCount = items.length;
+    
+        function showItem(index) {
+            const offset = -index * 100; // Сдвиг в процентах
+            $('.video-container').css('transform', 'translateX(' + offset + '%)');
+        }
+    
+        $('#next').click(function() {
+            currentIndex = (currentIndex + 1) % itemCount;
+            showItem(currentIndex);
+        });
+    
+        $('#prev').click(function() {
+            currentIndex = (currentIndex - 1 + itemCount) % itemCount;
+            showItem(currentIndex);
+        });
+    
+        showItem(currentIndex);
+    });
+    function openModal(img) {
+    var modal = document.getElementById("imageModal");
+    var modalImg = document.getElementById("modalImage");
+    var captionText = document.getElementById("caption");
+
+    modal.style.display = "block"; // Показываем модальное окно
+    modalImg.src = img.src; // Устанавливаем источник изображения
+    captionText.innerHTML = img.alt; // Устанавливаем текст под изображением
+}
+
+function closeModal() {
+    var modal = document.getElementById("imageModal");
+    modal.style.display = "none"; // Скрываем модальное окно
+}
+    </script>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        #message {
+            color: green;
+            display: none;
+        }
+            
+    #nextButton {
+            display: inline-block; /* Убедимся, что кнопка отображается как блочный элемент */
+            margin-top: 20px; /* Добавим отступ сверху */
+        }
+    #latest-works {
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+    }
+    
+    .carousel {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .video-container {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
+    
+    .video-card {
+        min-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .carousel-controls {
+        margin-top: 10px;
+    }
+    
+    #prev, #next {
+        padding: 10px 20px;
+        margin: 0 10px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    
+    #prev:hover, #next:hover {
+        background-color: #555;
+    }
+    
+    video {
+        width: 100%; /* Адаптивная ширина видео */
+        height: auto; /* Автоматическая высота */
+    }
+    
+    h3 {
+        margin: 10px 0;
+        font-size: 16px;
+        color: #333;
+    }
+    
+    .intro-instructions {
+    
+        width: 60%; /* 60% ширины экрана */
+        margin: 20px 0;
+        padding: 20px;
+        background-color: #e9ecef;
+        border-radius: 8px;
+    }
+
+    #acknowledgeButton, #nextButton {
+        padding: 15px 30px; /* Увеличенные внутренние отступы */
+        font-size: 18px; /* Увеличенный размер шрифта */
+        background-color: #007bff; /* Цвет фона (синий) */
+        color: white; /* Цвет текста (белый) */
+        border: none; /* Убираем границу */
+        border-radius: 5px; /* Скругляем углы */
+        cursor: pointer; /* Указатель при наведении */
+        transition: background-color 0.3s; /* Плавный переход при наведении */
+    }
+
+    #acknowledgeButton:hover, #nextButton:hover {
+        background-color: #0056b3; /* Темнее при наведении */
+    }
+
+    #message {
+        color: green;
+        display: none;
+        font-size: 18px; /* Увеличенный размер шрифта */
+    }
+
+    #loading {
+            display: none;
+            font-size: 16px;
+            color: blue;
+        }
+
+        /* Медиа-запросы для мобильных */
+        @media (max-width: 768px) {
+            #wrapper {
+                flex-direction: column; /* Вертикальное направление */
+            }
+
+            .container {
+                flex-direction: column; /* Вертикальное направление для элементов */
+            }
+
+            .main-content {
+                padding-right: 0; /* Убираем отступ справа */
+                padding-bottom: 20px; /* Добавляем отступ снизу */
+            }
+
+            .sidebar {
+                padding-left: 0; /* Убираем отступ слева */
+                display: none; /* Скрываем боковую панель на мобильных */
+            }
+
+            .intro-instructions {
+                max-width: 60%; /* Устанавливаем максимальную ширину на 100% */
+            }
+
+            #nextButton, #acknowledgeButton {
+                width: 100%; /* Кнопки занимают всю ширину */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Полноэкранные фоны -->
+    <!-- Конец Полноэкранных фонов -->
+    <!-- Начало Обертки -->
+    <div id="wrapper">
+        <div id="header">
+            <div class="logo"><a href="profile.php"><img src="style/images/logo.png" alt="" /></a></div>
+            <div class="social"></div>
+        </div>
+        <div class="clear"></div>
+        <!-- Начало Меню -->
+        <div id="menu" class="menu opacity">
+            <ul>
+                <li><a href="registrationForm.html">Главная</a></li>
+                <li><a href="blog.html"class="active">Инструктаж</a></li>
+                <li><a href="fullwidth.html">О нас</a></li>
+                <li><a href="profile.php" >Мой профиль</a></li>
+                <li><a href="index.html">Регистрация</a></li>
+                </li>
+            </ul>
+            <br style="clear: left" />
+        </div>
+        <!-- Конец Меню -->  
+  
+  <!-- Начало Контейнера -->
+  <div id="container" class="opacity"> 
+    <!-- Начало Боковой Панели -->
+    <div class="sidebar"> 
+        <div class="sidebar-box">
+            <h4>Вводный инструктаж.</h4>
+            <ul class="latest-posts">
+                <li><a href="blog.html">Гражданская оборона и ЧС</a></li>
+                <li><a href="blog2.html">Антитеррористическая защищенность.</a></li>
+                <li><a href="blog3.html"class="active">Инструкция о порядке действия сотрудников при пожаре </a></li>
+                <li><a href="blog4.html">Завершение инструктажа и регистрация</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="post-text"> 
+        <div class="main-content">
+            <div class="post"> 
+                <div class="post-info">
+                    <div class="post-title" style="text-align: center;">
+                        <h1><strong>Инструкция о порядке действия </strong></h1>
+                            <h1><strong>сотрудников при пожаре</strong></h1>
+                    </div>
+                </div>
+                <div class="post-text">
+                    <div class="intro-instructions">
+                        <h2>Вводный инструктаж</h2>
+                        <p>Инструкция о порядке действий сотрудников при пожаре предназначена для обеспечения безопасности работников и минимизации ущерба в случае возникновения пожара. Ниже приведены основные рекомендации и действия, которые должны быть выполнены.</p>
+                    </div>
+                </div>
+                <div class="post-text">        
+                    <div class="carousel">
+                        <div class="video-container">
+                            <article class="video-card">
+                                <video controls>
+                                    <source src="наглядный материал/видео/Наша сила в единстве.mp4" type="video/mp4">
+                                    Ваш браузер не поддерживает видео.
+                                </video>
+                                <h3>Наша сила в единстве</h3>
+                            </article>
+                        <div class="carousel-controls">
+                            <button id="prev">Prev</button>
+                            <button id="next">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+  <!-- Конец Поста -->
+                <!-- Конец Информации о Посте -->
+                <div class="post-text">
+                    <p>
+                        <strong>Инструкция о порядке действия сотрудников при пожаре</strong> 
+                    </p>
+                    <p>
+                        <strong>ПОЖАР</strong> - неконтролируемое горение, причиняющее материальный ущерб, вред жизни и здоровью граждан, интересам общества и государства.
+                    </p>
+                
+                    <div class="image-container">
+                        <img src="наглядный материал/картинки пожарка/1.jpeg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                    </div>
+                    
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+                    <p>
+                        <strong>Действия обслуживающего персонала на случай возникновения пожара в дневное время</strong>
+                    </p>
+
+                    <ol>
+                        <li>При обнаружении пожара или признаков горения в здании, помещении (сигнал от автоматической пожарной сигнализации, задымление, запах гари, повышение температуры воздуха и др.) необходимо немедленно сообщить об этом Главному врачу или Начальнику АХЧ (при этом необходимо назвать место возгорания или задымления, а также сообщить свою фамилию).</li>
+                        <li>В случае невключения в автоматическом режиме систем противопожарной защиты объекта защиты (систем оповещения людей о пожаре, сигнализации, пожаротушения, противодымной защиты) (признаки невключения систем: отсутствие звуковых или речевых сигналов оповещения о пожаре, отсутствие появления огнетушащих средств из оросителей (распылителей), насадок АУПТ, не открытие люков (клапанов) систем дымоудаления) необходимо в ручном режиме с помощью ближайших расположенных ручных пожарных извещателей и устройств дистанционного пуска (УДП) осуществить включение данных систем (нажать кнопки на ручных пожарных извещателях, УДП).</li>
+                        <li>Принять меры по прекращению всех работ в здании (если это допустимо по технологическому процессу производства), кроме работ, связанных с мероприятиями по ликвидации пожара.</li>
+                        <li>Принять посильные меры по оповещению людей о пожаре и по эвакуации людей. При покидании рабочих мест необходимо захватить с собой электрические фонари (при наличии) и средства индивидуальной защиты органов дыхания и зрения человека от токсичных продуктов горения (при наличии в помещениях и (или) на путях эвакуации продуктов горения немедленно их использовать (одеть на голову)).</li>
+                        <li>Принять посильные меры по отключению при необходимости электроэнергии (за исключением систем противопожарной защиты), остановку работы транспортирующих устройств, агрегатов, аппаратов, перекрывание сырьевых, газовых, паровых и водных коммуникаций, остановку работы систем вентиляции в аварийном и смежных с ним помещениях, выполнение других мероприятий, способствующих предотвращению развития пожара и задымления помещений здания.</li>
+                        <li>Встретить прибывшие подразделения пожарной охраны и оказать помощь в выборе кратчайшего пути для подъезда к очагу пожара.</li>
+                        <li>Сообщить прибывшим подразделениям пожарной охраны сведения об объекте защиты, информацию о ходе эвакуации людей, сведения, необходимые для обеспечения безопасности личного состава, информацию о перерабатываемых или хранящихся на объекте защиты опасных (взрывоопасных), взрывчатых, сильнодействующих ядовитых веществах, о конструктивных и технологических особенностях объекта защиты, прилегающих строений и сооружений, о количестве и пожароопасных свойствах хранимых и применяемых на объекте защиты веществ, материалов, изделий и сообщение других сведений, необходимых для успешной ликвидации пожара.</li>
+                    </ol>
+                    <div class="image-container">
+                        <img src="наглядный материал/картинки пожарка/2.jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                    </div>
+                    
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+                    <p>
+                        <strong>Работники и должностные лица организации обязаны:</strong>
+                    </p>
+                    <ol>
+                        <li>Соблюдать требования пожарной безопасности, установленные Правилами противопожарного режима в Российской Федерации и настоящей инструкцией.</li>
+                        <li>Работник в целях обеспечения и соблюдения требований пожарной безопасности обязан:
+                            <ul>
+                                <li>знать и соблюдать настоящую Инструкцию и ознакомиться с ней под роспись;</li>
+                                <li>уметь пользоваться первичными средствами пожаротушения (огнетушители, пожарные краны);</li>
+                                <li>знать содержание плана эвакуации людей при пожаре и порядок эвакуации людей при пожаре.</li>
+                            </ul>
+                        </li>
+                        <li>Незамедлительно сообщить руководителю организации либо непосредственному руководителю о нарушениях требований пожарной безопасности.</li>
+                        <li>Работники допускаются к работе на объекте защиты только после прохождения обучения мерам пожарной безопасности. Обучение работников мерам пожарной безопасности осуществляется путем проведения противопожарного инструктажа.</li>
+                    </ol>
+
+                    <p>
+                        <strong>Огнетушители разделяются на следующие типы:</strong>
+                    </p>
+                    <ol>
+                        <li>Пенные.</li>
+                        <li>Порошковые.</li>
+                        <li>Углекислотные.</li>
+                    </ol>
+                    <div class="image-container">
+                        <img src="наглядный материал/картинки пожарка/3.webp" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                    </div>
+                    
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+                    <p>
+                        <strong>Порядок применения углекислотных огнетушителей:</strong>
+                    </p>
+                    <ol>
+                        <li>Приблизиться с огнетушителем к очагу пожара (возгорания) на расстояние 2-3 метра;</li>
+                        <li>Направить раструб на огонь;</li>
+                        <li>Снять пломбу и выдернуть предохранительную чеку;</li>
+                        <li>Нажать на клавишу рукоятки или открыть запорное устройство до упора;</li>
+                        <li>По окончании тушения пожара (огня) отпустить рычаг (закрыть вентиль).</li>
+                    </ol>
+                    <p><strong>ВАЖНО:</strong> Запрещено держаться за раструб во время работы огнетушителя, так как он сильно охлаждается, что может привести к обморожению рук.</p>
+                
+                    <p><strong>Перед началом мероприятий по спасению необходимо:</strong></p>
+                    <ol>
+                        <li>Известить: Главного врача, Начальника АХЧ, Спасательные службы;</li>
+                        <li>Остановить все работы;</li>
+                        <li>Определить причину происшествия (Начальник АХЧ);</li>
+                    </ol>
+                
+                    <p><strong>Действия при получении информации об эвакуации:</strong></p>
+                    <ol>
+                        <li>Сообщение об эвакуации может поступить не только в случае обнаружения взрывного устройства и ликвидации последствий террористического акта, но и при пожаре, стихийном бедствии и т.п.</li>
+                        <li>Получив сообщение о начале эвакуации, соблюдайте спокойствие и четко выполняйте команды.</li>
+                        <li>Если вы находитесь в помещении, выполните следующие действия:
+                            <ul>
+                                <li>Возьмите личные документы, деньги, ценности;</li>
+                                <li>Отключите электричество, воду и газ;</li>
+                                <li>Окажите помощь в эвакуации пожилых и тяжело больных людей;</li>
+                                <li>Не допускайте паники, истерики и спешки. Помещение покидайте организованно;</li>
+                                <li>Возвращайтесь в покинутое помещение только после разрешения ответственных лиц;</li>
+                                <li>Помните, что от согласованности и четкости ваших действий будет зависеть жизнь и здоровье многих людей.</li>
+                            </ul>
+                        </li>
+                    </ol>
+                    <div class="image-container">
+                        <img src="наглядный материал/картинки пожарка/4.png" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                    </div>
+                    
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+
+                    <p><strong>Порядок действий работника при подготовке и проведении эвакуационных мероприятий:</strong></p>
+                    <ol>
+                        <strong>Нужно знать:</strong>
+                            <ul>
+                                <li>по эвакуации работников;</li>
+                                <li>по эвакуации материальных и культурных ценностей;</li>
+                                <li>Маршрут эвакуации от рабочего места работника организации до выхода из здания;</li>
+                                <li>Правила поведения при срочной эвакуации из помещений и здания организации;</li>
+                                <li>Порядок организованного выхода из помещения (с большим количеством работников);</li>
+                                <li>Места расположения запасных выходов из здания.</li>
+                                <li>Характерные ошибки и опасность паники при эвакуации из помещений и зданий (в т.ч. при эвакуации с верхних этажей). Использование лифта в организации при эвакуации;</li>
+                                <li>Безопасный район для работников организации (при наличии);</li>
+                                <li>Председатель эвакуационной комиссии (Главный врач);</li>
+                                <li>Перечень предметов первой необходимости;</li>
+                                <li>Местоположение сборного эвакопункта;</li>
+                                <li>Правила поведения в эвакопункте.</li>
+                            </ul>
+                </div>
+                <div>
+                    <button id="acknowledgeButton" aria-label="Подтвердить ознакомление">Я ознакомлен с материалом</button>
+                    <button id="nextButton" style="display:none;" aria-label="Перейти на следующий сайт">Перейти на следующий сайт</button>
+                    <div id="message" style="display:none;"></div>
+                </div>
+                
+                <script>
+                    $(document).ready(function () {
+                        const userId = "<?php echo isset($_SESSION['user']) ? $_SESSION['user']['phone_number'] : ''; ?>"; // Уникальный идентификатор пользователя
+                        const materialIndex = 2; // Установите индекс материала
+                
+                        // Проверяем, был ли пользователь ознакомлен
+                        function checkAcknowledgement() {
+                            // Отправляем AJAX запрос для проверки статуса на сервере
+                            $.get('check_user_status.php', { user_id: userId, material_index: materialIndex }, function(response) {
+                                if (response.acknowledged) {
+                                    $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                                    $('#nextButton').show(); // Показываем кнопку для перехода
+                                    $('#message').text('Вы уже ознакомились с этим материалом.').css('color', 'orange').show(); // Предупреждение
+                                }
+                            }, 'json');
+                        }
+                
+                        checkAcknowledgement(); // Проверяем статус при загрузке
+                
+                        $('#acknowledgeButton').on('click', function () {
+                            // Устанавливаем флаг на сервере, что пользователь ознакомился с материалом
+                            $.post('update_user_status.php', {
+                                user_id: userId,
+                                material_index: materialIndex
+                            })
+                            .done(function(response) {
+                                const jsonResponse = JSON.parse(response);
+                                $('#message').text('Вы успешно подтвердили ознакомление.').show();
+                                $('#acknowledgeButton').prop('disabled', true).text('Вы уже ознакомились с материалом');
+                                $('#nextButton').show(); // Показываем кнопку для перехода
+                            })
+                            .fail(function() {
+                                $('#message').text('Ошибка при обновлении статуса.').css('color', 'red').show();
+                            });
+                        });
+                
+                        // Обработка нажатия на кнопку для перехода
+                        $('#nextButton').on('click', function () {
+                            window.location.href = 'blog4.html'; // Переход на следующую страницу
+                        });
+                    });
+                </script>
+<script type="text/javascript" src="style/js/scripts.js"></script>
+</body>
+</html>
