@@ -16,7 +16,51 @@ $commonMaterials = [
     'common_material3.html' => 'Общий материал 3',
     'common_material4.html' => 'Общий материал 4',
     'common_material5.html' => 'Общий материал 5',
-    
+];
+
+$additionalMaterials = [
+    'врач' => [
+        "Дополнительный материал врач",
+        "Дополнительный материал врач 2",
+    ],
+    'медсестра' => [
+        "Дополнительный материал медсестра",
+        "Дополнительный материал медсестра 2",
+    ],
+    'администратор' => [
+        "Дополнительный материал администратор",
+        "Дополнительный материал администратор 2",
+    ],
+    'лаборант' => [
+        "Дополнительный материал лаборант",
+        "Дополнительный материал лаборант 2",
+    ],
+    'фельдшер' => [
+        "Дополнительный материал фельдшер",
+        "Дополнительный материал фельдшер 2",
+    ],
+];
+$additionalMaterialsLinks = [
+    'врач' => [
+        "blog4.html",
+        "blog5.html",
+    ],
+    'медсестра' => [
+        "blog4.html",
+        "blog5.html",
+    ],
+    'администратор' => [
+        "blog4.html",
+        "blog5.html",
+    ],
+    'лаборант' => [
+        "blog4.html",
+        "blog5.html",
+    ],
+    'фельдшер' => [
+        "blog4.html",
+        "blog5.html",
+    ],
 ];
 
 function readCsv($fileName) {
@@ -54,12 +98,11 @@ if ($userPhoneNumber) {
                     ],
                 ]
             ];
-
+            break; // Выходим из цикла, если нашли пользователя
         }
     }
 }
 ?>
-
     
 <head>
     <meta charset="UTF-8">
@@ -230,7 +273,7 @@ if ($userPhoneNumber) {
             <?php endif; ?>
         </div>
         <h3>Материалы для прохождения</h3>
-<div id="materialList">
+        <div id="materialList">
     <?php if (isset($_SESSION['user'])): ?>
         <?php
         // Общие материалы
@@ -240,37 +283,46 @@ if ($userPhoneNumber) {
             "Порядок действия сотрудников при пожаре"
         ];
 
-        // Выделенные материалы
-        $specialMaterials = [
-            "Материал",
-            "Материал 2"
-        ];
+        // Выводим основные материалы
+        foreach ($mainMaterials as $index => $title): ?>
+            <p>
+                <a href="blog<?php echo $index + 1; ?>.html" class="material-link"><?php echo $title; ?>: <strong><?php echo $_SESSION['user']['completed_materials']['main']['material' . ($index + 1)] ? 'Пройдено' : 'Не пройдено'; ?></strong></a>
+            </p>
+        <?php endforeach; ?>
 
-                foreach ($mainMaterials as $index => $title): ?>
-                    <p>
-                        <a href="blog<?php echo $index + 1; ?>.html" class="material-link"><?php echo $title; ?>: <strong><?php echo $_SESSION['user']['completed_materials']['main']['material' . ($index + 1)] ? 'Пройдено' : 'Не пройдено'; ?></strong></a>
-                    </p>
-                <?php endforeach; ?>
-        
-                <h3>Дополнительные материалы</h3>
-                <?php foreach ($specialMaterials as $index => $title): ?>
-                    <p>
-                        <a href="blog<?php echo count($mainMaterials) + $index + 1; ?>.html" class="material-link"><?php echo $title; ?>: <strong><?php echo $_SESSION['user']['completed_materials']['main']['material' . (count($mainMaterials) + $index + 1)] ? 'Пройдено' : 'Не пройдено'; ?></strong></a>
-                    </p>
-                <?php endforeach; ?>
-        
-            <?php else: ?>
-                <p>Материалы доступны только зарегистрированным пользователям.</p>
-            <?php endif; ?>
-        </div>
+        <?php
+        // Дополнительные материалы
+        $userProfession = $_SESSION['user']['profession'];
+        $userAdditionalMaterials = $additionalMaterials[$userProfession] ?? []; // Получаем материалы для данной профессии
+        $userAdditionalMaterialsLinks = $additionalMaterialsLinks[$userProfession] ?? []; // Получаем ссылки для данной профессии
+
+        // Выводим дополнительные материалы
+        if (!empty($userAdditionalMaterials)) {
+            echo '<h3>Дополнительные материалы</h3>';
+            foreach ($userAdditionalMaterials as $index => $title): ?>
+                <p>
+                    <a href="<?php echo htmlspecialchars($userAdditionalMaterialsLinks[$index]); ?>" class="material-link">
+                        <?php echo htmlspecialchars($title); ?>: 
+                        <strong><?php echo $_SESSION['user']['completed_materials']['main']['material' . (count($mainMaterials) + $index + 1)] ? 'Пройдено' : 'Не пройдено'; ?></strong>
+                    </a>
+                </p>
+            <?php endforeach; 
+        }
+        ?>
+    <?php else: ?>
+        <p>Материалы доступны только зарегистрированным пользователям.</p>
+    <?php endif; ?>
+</div>
+    </section>
+</div>
 
 <script>
     $(document).ready(function () {
         const materials = [
             { title: "Гражданская оборона и ЧС", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material1']); ?> },
             { title: "Антитеррористическая защищенность", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material2']); ?> },
-            { title: "Порядок действия сотрудников при пожаре", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material3']); ?> }
-            { title: "Материал", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material4']); ?> }
+            { title: "Порядок действия сотрудников при пожаре", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material3']); ?> },
+            { title: "Материал", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material4']); ?> },
             { title: "Материал 2", completed: <?php echo json_encode($_SESSION['user']['completed_materials']['main']['material5']); ?> }
         ];
 
@@ -280,5 +332,6 @@ if ($userPhoneNumber) {
         }
     });
 </script>
+
 </body>
 </html>

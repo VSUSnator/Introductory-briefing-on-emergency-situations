@@ -211,10 +211,8 @@ function closeModal() {
         <div class="sidebar-box">
             <h4>Вводный инструктаж.</h4>
             <ul class="latest-posts">
-                <li><a href="blog1.html"class="active">Гражданская оборона и ЧС</a></li>
-                <li><a href="blog2.html">Антитеррористическая защищенность.</a></li>
-                <li><a href="blog3.html">Инструкция о порядке действия сотрудников при пожаре </a></li>
-                <li><a href="blog.html">Завершение инструктажа и регистрация</a></li>
+                <li><a href="blog4.html"class="active">Дополнительный материал</a></li>
+                <li><a href="blog5.html">Дополнительный материал 2</a></li>
             </ul>
         </div>
     </div>
@@ -235,13 +233,13 @@ function closeModal() {
             <div class="post"> 
                 <div class="post-info">
                     <div class="post-title" style="text-align: center;">
-                        <h1><strong>Гражданская оборона и ЧС</strong></h1>
+                        <h1><strong>Шаблон для дополнительного материала</strong></h1>
                     </div>
                 </div>
                 <div class="post-text">
                     <div class="intro-instructions">
                         <h2>Вводный инструктаж</h2>
-                        <p>Гражданская оборона и чрезвычайные ситуации (ЧС) — это важные компоненты системы обеспечения безопасности населения и защиты его жизни в условиях угроз и опасностей. Рассмотрим подробнее каждую из этих категорий.</p>
+                        <p>Шаблон для дополнительного материала</p>
                     </div>
                 </div>
                 <div class="post-text">        
@@ -272,22 +270,16 @@ function closeModal() {
   
         
 
-  <!-- Конец Поста -->
+   <!-- Конец Поста -->
                 <!-- Конец Информации о Посте -->
                 <div class="post-text">
                     <p>
-                        <strong>ЧРЕЗВЫЧАЙНАЯ СИТУАЦИЯ</strong> - это обстановка на определенной территории, 
-                        сложившаяся в результате аварии, опасного природного явления, катастрофы, 
-                        стихийного или иного бедствия, которые могут повлечь или повлекли за собой 
-                        человеческие жертвы, ущерб здоровью людей или окружающей среде, 
-                        значительные материальные потери и нарушение условий жизнедеятельности людей.
+                        <strong>Страница находится в раннем доступе, нужно добавить информацию.</strong> 
                     </p>
-                    <p>
-                        <strong>Какие мы знаем Чрезвычайные ситуации и как действовать при их возникновении?</strong>
-                    </p>
+
                 
                     <div class="image-container">
-                        <img src="наглядный материал/картинкм чс/Что такое ЧС природного характера.jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                        <img src=".jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
                     </div>
                     
                     <!-- Модальное окно для увеличенного изображения -->
@@ -297,13 +289,30 @@ function closeModal() {
                         <div id="caption"></div>
                     </div>
                     
+                    <p>
+                        <strong></strong><br />
+
+                    </p>
+                   
+                    <div class="image-container">
+                        <img src=".jpg" alt="Описание изображения" class="thumbnail" onclick="openModal(this)">
+                    </div>
                     
-                
-                <div>
-                    <button id="acknowledgeButton" aria-label="Подтвердить ознакомление">Я ознакомлен с материалом</button>
-                    <button id="nextButton" style="display:none;" aria-label="Перейти на следующий сайт">Перейти на следующий сайт</button>
-                    <div id="message" style="display:none;"></div>
-                </div>
+                    <!-- Модальное окно для увеличенного изображения -->
+                    <div id="imageModal" class="modal" onclick="closeModal()">
+                        <span class="close">&times;</span>
+                        <img class="modal-content" id="modalImage">
+                        <div id="caption"></div>
+                    </div>
+                    <p>
+                        <strong>Этот сайт создан исключительно как шаблон для будующей информации</strong><br />
+
+                    </p>
+                    <div>
+                        <button id="acknowledgeButton" aria-label="Подтвердить ознакомление">Я ознакомлен с материалом</button>
+                        <button id="nextButton" style="display:none;" aria-label="Перейти на следующий сайт">Перейти на следующий сайт</button>
+                        <div id="message" style="display:none;"></div>
+                    </div>
                 
                 <script>
                     $(document).ready(function () {
