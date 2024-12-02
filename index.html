@@ -201,6 +201,13 @@
                 $(this).text(isLogin ? 'Еще не зарегистрированы? Зарегистрироваться' : 'Уже зарегистрированы? Войти');
                 $('#message').hide();
                 $('#materialsContainer').addClass('hidden'); // Скрываем материалы при переключении форм
+
+                // Скрываем или показываем выбор профессии
+                if (isLogin) {
+                    $('#profession').addClass('hidden'); // Прячем выбор профессии при входе
+                } else {
+                    $('#profession').removeClass('hidden'); // Показываем выбор профессии при регистрации
+                }
             });
 
             $('#phone_number').on('input', function () {
